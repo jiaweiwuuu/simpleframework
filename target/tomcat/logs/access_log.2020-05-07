@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [07/May/2020:22:45:31 +1000] "GET /hello HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [07/May/2020:22:46:00 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-3 238
+0:0:0:0:0:0:0:1 - - [07/May/2020:22:46:01 +1000] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [07/May/2020:22:46:45 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-1 189
+0:0:0:0:0:0:0:1 - - [07/May/2020:22:46:47 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-3 4
+0:0:0:0:0:0:0:1 - - [07/May/2020:23:01:38 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-1 214
+0:0:0:0:0:0:0:1 - - [07/May/2020:23:01:44 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-3 3
+0:0:0:0:0:0:0:1 - - [07/May/2020:23:01:49 +1000] "GET /simpleframework/1 HTTP/1.1" 200 - http-bio-8080-exec-4 3
+0:0:0:0:0:0:0:1 - - [07/May/2020:23:01:53 +1000] "GET /simpleframework/f HTTP/1.1" 200 - http-bio-8080-exec-6 2
