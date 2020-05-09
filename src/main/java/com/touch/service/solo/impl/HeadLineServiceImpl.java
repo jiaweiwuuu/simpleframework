@@ -3,9 +3,10 @@ package com.touch.service.solo.impl;
 import com.touch.entity.bo.HeadLine;
 import com.touch.entity.dto.Result;
 import com.touch.service.solo.HeadLineService;
+import org.simpleframework.core.annotation.Service;
 
 import java.util.List;
-
+@Service
 public class HeadLineServiceImpl implements HeadLineService {
     @Override
     public Result<Boolean> addHeadLine(HeadLine headLine) {

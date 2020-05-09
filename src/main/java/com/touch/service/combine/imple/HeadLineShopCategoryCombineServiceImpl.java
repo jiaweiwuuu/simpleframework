@@ -7,11 +7,15 @@ import com.touch.entity.dto.Result;
 import com.touch.service.combine.HeadLineShopCategoryCombineService;
 import com.touch.service.solo.HeadLineService;
 import com.touch.service.solo.ShopCategoryService;
+import org.simpleframework.core.annotation.Service;
+import org.simpleframework.inject.annotation.Autowired;
 
 import java.util.List;
-
+@Service
 public class HeadLineShopCategoryCombineServiceImpl implements HeadLineShopCategoryCombineService {
+    @Autowired
     private HeadLineService headLineService;
+    @Autowired
     private ShopCategoryService shopCategoryService;
     @Override
     public Result<MainPageInfoDTO> getMainPageInfo() {

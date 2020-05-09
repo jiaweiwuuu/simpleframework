@@ -4,12 +4,15 @@ import com.touch.entity.bo.HeadLine;
 import com.touch.entity.dto.Result;
 import com.touch.service.solo.HeadLineService;
 import com.touch.service.solo.impl.HeadLineServiceImpl;
+import org.simpleframework.core.annotation.Controller;
+import org.simpleframework.inject.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
+@Controller
 public class HeadLineOperationController {
+    @Autowired
     private HeadLineService service = new HeadLineServiceImpl();
 
 
