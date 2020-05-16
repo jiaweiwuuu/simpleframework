@@ -21,7 +21,7 @@ class DependencyInjectorTest {
         MainPageController mainPageController = (MainPageController) beanContainer.getBean(MainPageController.class);
         Assertions.assertEquals(true,mainPageController instanceof MainPageController);
         HeadLineShopCategoryCombineService headLineShopCategoryCombineService = mainPageController.getService();
-        Assertions.assertTrue(headLineShopCategoryCombineService != beanContainer.getBean(HeadLineShopCategoryCombineServiceImpl.class));
+        Assertions.assertNull(headLineShopCategoryCombineService);
 
         new DependencyInjector().doIOC();
 

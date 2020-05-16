@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class ShopCategoryOperationController {
     @Autowired
-    private ShopCategoryService service = new ShopCategoryServiceImpl();
+    private ShopCategoryService service;
 
     public Result<Boolean> addShopCategory(HttpServletRequest req, HttpServletResponse resp) {
         return service.addShopCategory(new ShopCategory());

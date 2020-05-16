@@ -1,6 +1,4 @@
-package demo.reflect.annotation;
-
-import java.awt.desktop.SystemSleepEvent;
+package demo.annotation;
 
 public class AnnotationDemo {
     public static void main(String[] args) {

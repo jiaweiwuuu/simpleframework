@@ -1,6 +1,5 @@
-package demo.reflect.annotation;
+package demo.annotation;
 
-import java.awt.desktop.SystemSleepEvent;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,7 +7,7 @@ import java.lang.reflect.Method;
 public class AnnotationParser {
     // parse class annotation
     public static void parseTypeAnnotation() throws ClassNotFoundException {
-        Class cls = Class.forName("demo.reflect.annotation.Course");
+        Class cls = Class.forName("demo.annotation.Course");
         Annotation[] annotations = cls.getAnnotations();
 
         for(Annotation annotation: annotations){
@@ -17,7 +16,7 @@ public class AnnotationParser {
         }
     }
     public static void parseFieldAnnotation() throws ClassNotFoundException{
-        Class cls = Class.forName("demo.reflect.annotation.Course");
+        Class cls = Class.forName("demo.annotation.Course");
         Field[] fields = cls.getDeclaredFields();
         for(Field field:fields){
             if(field.isAnnotationPresent(PersonInfoAnnotation.class)){
@@ -28,7 +27,7 @@ public class AnnotationParser {
     }
 
     public static void parseMethodAnnotation() throws ClassNotFoundException{
-        Class cls = Class.forName("demo.reflect.annotation.Course");
+        Class cls = Class.forName("demo.annotation.Course");
         Method[] methods = cls.getDeclaredMethods();
         for(Method method : methods){
             if(method.isAnnotationPresent(CourseInfoAnnotation.class)){

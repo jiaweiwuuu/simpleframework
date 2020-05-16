@@ -1,4 +1,4 @@
-package demo.reflect.annotation;
+package demo.annotation;
 @CourseInfoAnnotation(courseName = "courseName",courseTag = "interview",courseProfile = "db")
 
 

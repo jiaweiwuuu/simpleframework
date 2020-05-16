@@ -1,6 +1,7 @@
 package org.simpleframework.core.util;
 
 import java.util.Collection;
+import java.util.Map;
 
 public class ValidationUtil {
 
@@ -12,5 +13,8 @@ public class ValidationUtil {
     }
     public static boolean isEmpty(Object[] objects){
         return objects == null || objects.length == 0;
+    }
+    public static boolean isEmpty(Map<?,?> map){
+        return map == null || map.isEmpty();
     }
 }

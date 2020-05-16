@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 @Controller
 @Getter
-public class MainPageController {
+public class  MainPageController {
     @Autowired(value = "HeadLineShopCategoryCombineServiceImpl")
-    private HeadLineShopCategoryCombineService service = new HeadLineShopCategoryCombineServiceImpl();
+    private HeadLineShopCategoryCombineService service;
     public Result<MainPageInfoDTO> getMainPageInfo(HttpServletRequest req, HttpServletResponse resp){
         return service.getMainPageInfo();
     }

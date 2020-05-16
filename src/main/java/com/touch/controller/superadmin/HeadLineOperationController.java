@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class HeadLineOperationController {
     @Autowired
-    private HeadLineService service = new HeadLineServiceImpl();
+    private HeadLineService service;
 
 
     public Result<Boolean> addHeadLine(HttpServletRequest req, HttpServletResponse resp) {
