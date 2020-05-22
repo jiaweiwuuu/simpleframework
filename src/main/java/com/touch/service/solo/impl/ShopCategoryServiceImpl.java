@@ -4,10 +4,12 @@ import com.touch.entity.bo.HeadLine;
 import com.touch.entity.bo.ShopCategory;
 import com.touch.entity.dto.Result;
 import com.touch.service.solo.ShopCategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.simpleframework.core.annotation.Service;
 
 import java.util.List;
 @Service
+@Slf4j
 public class ShopCategoryServiceImpl implements ShopCategoryService {
     @Override
     public Result<Boolean> addShopCategory(ShopCategory shopCategory) {

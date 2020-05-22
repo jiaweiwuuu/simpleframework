@@ -20,62 +20,70 @@ public class AspectWeaver {
     public void doAop(){
         // get all @Aspect
         Set<Class<?>> aspectSet = beanContainer.getClassesByAnnotation(Aspect.class);
-
-
-        Map<Class<? extends Annotation>, List<AspectInfo>> categorizedMap = new HashMap<>();
-
+        // concat AspectInfoList
         if(ValidationUtil.isEmpty(aspectSet)){
             return;
         }
-        for(Class<?> aspectClass : aspectSet){
-            if(verifyAspect(aspectClass)){
-                categorizeAspect(categorizedMap, aspectClass);
+
+        List<AspectInfo> aspectInfoList =  packAspectInfoList(aspectSet);
+
+        // iterate classes in the container
+
+        Set<Class<?>> classSet = beanContainer.getClasses();
+        for(Class<?> targetClass:classSet){
+            if(targetClass.isAnnotationPresent(Aspect.class)){
+                continue;
             }
-            else {
-                throw new RuntimeException("@Aspect and @ order have not been added to the Aspect class, or Aspect class does not extend from DefaultAspect or the value in Aspect Tag equals @Aspect");
-            }
+            // roughly filter
+            List<AspectInfo> rouchMatchedAspectList =  collectRoughMatchedAspectListForSpecificClass(aspectInfoList,targetClass);
+
+            wrapIfNessary(rouchMatchedAspectList,targetClass);
         }
 
-        if(ValidationUtil.isEmpty(categorizedMap)){return;}
+        // aspect weaver
 
-        for(Class<? extends Annotation > category:categorizedMap.keySet()){
-            weaveByCategory(category,categorizedMap.get(category));
-        }
+
     }
 
-    private void weaveByCategory(Class<? extends Annotation> category, List<AspectInfo> aspectInfoList) {
-        Set<Class<?>> classSet = beanContainer.getClassesByAnnotation(category);
-        if(ValidationUtil.isEmpty(classSet)){
+    private void wrapIfNessary(List<AspectInfo> rouchMatchedAspectList, Class<?> targetClass) {
+        if(ValidationUtil.isEmpty(rouchMatchedAspectList)){
             return;
         }
-        for(Class<?> targetClass : classSet){
-            AspectListExecutor aspectListExecutor = new AspectListExecutor(targetClass,aspectInfoList);
-            Object proxyBean = ProxyCreater.createProxy(targetClass,aspectListExecutor);
-
-            beanContainer.addBean(targetClass,proxyBean);
-        }
+        AspectListExecutor aspectListExecutor = new AspectListExecutor(targetClass,rouchMatchedAspectList);
+        Object proxyBean = ProxyCreater.createProxy(targetClass,aspectListExecutor);
+        beanContainer.addBean(targetClass,proxyBean);
     }
 
-    private void categorizeAspect(Map<Class<? extends Annotation>, List<AspectInfo>> categorizedMap, Class<?> aspectClass) {
-        Order orderTag = aspectClass.getAnnotation(Order.class);
-        Aspect aspectTag = aspectClass.getAnnotation(Aspect.class);
-        DefaultAspect aspect =(DefaultAspect) beanContainer.getBean(aspectClass);
-        AspectInfo aspectInfo = new AspectInfo(orderTag.value(),aspect);
-        if(categorizedMap.containsKey(aspectTag.value())){
-            List<AspectInfo> aspectInfoList = new ArrayList<>();
-            aspectInfoList.add(aspectInfo);
-            categorizedMap.put(aspectTag.value(),aspectInfoList);
+    private List<AspectInfo> collectRoughMatchedAspectListForSpecificClass(List<AspectInfo> aspectInfoList, Class<?> targetClass) {
+        List<AspectInfo> rouchMatchedAspectList = new ArrayList<>();
+        for(AspectInfo aspectInfo : aspectInfoList){
+            if(aspectInfo.getPointcutLocator().roughMatches(targetClass)){
+                rouchMatchedAspectList.add(aspectInfo);
+            }
         }
-        else{
-            List<AspectInfo> aspectInfoList = categorizedMap.get(aspectTag);
+        return rouchMatchedAspectList;
+    }
+
+    private List<AspectInfo> packAspectInfoList(Set<Class<?>> aspectSet) {
+        List<AspectInfo> aspectInfoList = new ArrayList<>();
+        for(Class<?> aspectClass : aspectSet){
+            if(!verifyAspect(aspectClass)){
+                throw new RuntimeException("@Aspect and @Order must be added to the Aspect class, Aspect class must extend from DefaultAspect ");
+            }
+            Order orderTag = aspectClass.getAnnotation(Order.class);
+            Aspect aspectTag = aspectClass.getAnnotation(Aspect.class);
+            DefaultAspect defaultAspect =(DefaultAspect) beanContainer.getBean(aspectClass);
+
+            PointcutLocator pointcutLocator = new PointcutLocator(aspectTag.pointcut());
+            AspectInfo aspectInfo = new AspectInfo(orderTag.value(),defaultAspect,pointcutLocator);
             aspectInfoList.add(aspectInfo);
         }
+        return aspectInfoList;
     }
 
     private boolean verifyAspect(Class<?> aspectClass) {
         return aspectClass.isAnnotationPresent(Aspect.class) &&
                 aspectClass.isAnnotationPresent(Order.class)&&
-                DefaultAspect.class.isAssignableFrom(aspectClass)&&
-                aspectClass.getAnnotation(Aspect.class).value() != Aspect.class;
+                DefaultAspect.class.isAssignableFrom(aspectClass);
     }
 }
