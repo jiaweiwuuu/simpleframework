@@ -9,7 +9,7 @@
             Hello!
         </h1>
         <h2>
-            good, ${name}
+            hello world
         </h2>
     </body>
 </html>

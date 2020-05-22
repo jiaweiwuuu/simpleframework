@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [22/May/2020:21:58:31 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-1 202
+0:0:0:0:0:0:0:1 - - [22/May/2020:21:58:32 +1000] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [22/May/2020:22:04:02 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-1 372
+0:0:0:0:0:0:0:1 - - [22/May/2020:22:08:42 +1000] "GET /simpleframework/hello HTTP/1.1" 200 202 http-bio-8080-exec-1 548
+0:0:0:0:0:0:0:1 - - [22/May/2020:22:09:19 +1000] "GET /simpleframework/frontend/getmainpageinfo HTTP/1.1" 200 - http-bio-8080-exec-3 6
+0:0:0:0:0:0:0:1 - - [22/May/2020:23:18:30 +1000] "GET /simpleframework/hello HTTP/1.1" 200 - http-bio-8080-exec-1 465
+0:0:0:0:0:0:0:1 - - [22/May/2020:23:34:40 +1000] "GET /simpleframework/static/limengjia.png HTTP/1.1" 200 - http-bio-8080-exec-1 591
+0:0:0:0:0:0:0:1 - - [22/May/2020:23:39:23 +1000] "GET /simpleframework/static/limengjia.png HTTP/1.1" 200 207302 http-bio-8080-exec-1 500
+0:0:0:0:0:0:0:1 - - [22/May/2020:23:39:29 +1000] "GET /simpleframework/static/limengjia.png HTTP/1.1" 304 - http-bio-8080-exec-3 8
+0:0:0:0:0:0:0:1 - - [22/May/2020:23:49:08 +1000] "GET /simpleframework/templates/hello.jsp HTTP/1.1" 200 188 http-bio-8080-exec-2 1557

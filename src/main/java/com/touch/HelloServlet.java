@@ -12,29 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@Slf4j
-@WebServlet("/hello")
-public class HelloServlet extends HttpServlet {
-    @Override
-    public void init(){
-        System.out.println("initializing servlet");
-    }
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = "my simple framework";
-        log.debug("name is "+name);
-        req.setAttribute("name",name);
-        req.getRequestDispatcher("/WEB-INF/jsp/hello.jsp").forward(req,resp);
-    }
-
-    @Override
-    public void destroy(){
-        System.out.println("destroy servlet");
-    }
-
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("execute doGet");
-        doGet(req,resp);
-    }
-}
+//@Slf4j
+//@WebServlet("/hello")
+//public class HelloServlet extends HttpServlet {
+//    @Override
+//    public void init(){
+//        System.out.println("initializing servlet");
+//    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        String name = "my simple framework";
+//        log.debug("name is "+name);
+//        req.setAttribute("name",name);
+//        req.getRequestDispatcher("/WEB-INF/jsp/hello.jsp").forward(req,resp);
+//    }
+//
+//    @Override
+//    public void destroy(){
+//        System.out.println("destroy servlet");
+//    }
+//
+//    @Override
+//    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        System.out.println("execute doGet");
+//        doGet(req,resp);
+//    }
+//}
