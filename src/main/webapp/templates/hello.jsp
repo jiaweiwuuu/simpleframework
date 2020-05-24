@@ -9,7 +9,8 @@
             Hello!
         </h1>
         <h2>
-            hello world
+            ${result.code}
+            ${result.message}
         </h2>
     </body>
 </html>

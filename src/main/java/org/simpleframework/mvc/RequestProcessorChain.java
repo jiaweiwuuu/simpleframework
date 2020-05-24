@@ -43,7 +43,7 @@ public class RequestProcessorChain {
             }
         }
         catch (Exception e){
-            resultRender = new InternalErrorResultRender();
+            resultRender = new InternalErrorResultRender(e.getMessage());
             log.error("doRequestProcessorChain error:",e);
         }
 
